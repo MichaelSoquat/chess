@@ -20,9 +20,9 @@ export class GameFieldComponent implements OnInit {
   // set the correct field color
   getStyling(row: number, col: number) {
     if ((row + col) % 2) {
-      return 'white';
+      return 'lightbrown';
     } else {
-      return 'black';
+      return 'lightgrey';
     }
   }
 
