@@ -2,7 +2,7 @@
     <div flex class="row" *ngFor="let row of service.rows; let y=index">
         <div class="column" *ngFor="let column of service.columns; let x=index" [style.background-color]="getStyling(y, x)">
             <!--Chess Piece here-->
-            <div (click)="onTileClick(column)">
+            <div (click)="onTileClick(column, row)">
                 <div style="width:60px;height:60px;"></div>
             </div>
 

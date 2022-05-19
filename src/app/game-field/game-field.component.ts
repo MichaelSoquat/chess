@@ -11,7 +11,13 @@ export class GameFieldComponent implements OnInit {
   constructor(public service: ServiceService) { }
 
   ngOnInit(): void {
+    this.newGameField();
   }
+  //set new game field pieces
+  newGameField() {
+
+  }
+  // set the correct field color
   getStyling(row: number, col: number) {
     if ((row + col) % 2) {
       return 'white';
@@ -20,9 +26,9 @@ export class GameFieldComponent implements OnInit {
     }
   }
 
-
-  onTileClick(tile: any) {
-    console.log(tile)
+  // if tile gets clicked, get the current piece and math the possible movement
+  onTileClick(column: string, row: number) {
+    console.log(column, row)
   }
 
 }
