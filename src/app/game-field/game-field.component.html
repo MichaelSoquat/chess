@@ -1,8 +1,8 @@
-<div class="border-game-field">
+<div #game class="border-game-field">
     <div flex class="row" *ngFor="let row of service.rows; let y=index">
         <div class="column" *ngFor="let column of service.columns; let x=index" [style.background-color]="getStyling(y, x)">
             <!--Chess Piece here-->
-            <div (click)="onTileClick(column, row)">
+            <div #id id="{{column+row}}" class="tile" (click)="onTileClick(column, row)">
                 <div></div>
             </div>
 
