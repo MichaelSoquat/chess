@@ -3,7 +3,7 @@
         <div class="column" *ngFor="let column of service.columns; let x=index" [style.background-color]="getStyling(y, x)">
             <!--Chess Piece here-->
             <div #id id="{{column+row}}" class="tile" (click)="onTileClick(column, row)">
-                <div></div>
+                <img [style.background-color]="getStyling(y, x)" class=" images " [src]="checkSource(column, row)">
             </div>
 
         </div>

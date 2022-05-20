@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { King } from '../models/king.class';
 import { ServiceService } from '../service.service';
 
@@ -10,6 +10,8 @@ import { ServiceService } from '../service.service';
 export class GameFieldComponent implements OnInit, AfterViewInit {
   @ViewChildren('id') id: any;
   allFields: any;
+  king_white: any;
+  A1: any;
   constructor(public service: ServiceService) { }
 
   ngOnInit(): void {
@@ -42,10 +44,31 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
   pushAllFields() {
     this.allFields = this.id['_results'];
     console.log(this.allFields)
+    this.filterElement()
   }
   createPieces() {
-    let king_white = new King('king_white', 'A1')
-    console.log(king_white)
+    this.king_white = new King('assets/img/king_white.png', 'D1')
+    console.log(this.king_white)
+
+  }
+  filterElement() {
+    let startTileForKingWhite = this.allFields.filter((tile: ElementRef) => {
+      return tile.nativeElement.id == this.king_white.fieldNow;
+
+    })
+    console.log(startTileForKingWhite)
+    this.A1 = this.king_white.img;
+    console.log(this.A1)
   }
 
+  checkSource(column: string, row: number) {
+    let id: string | number = column + row;
+    if (this.king_white.fieldNow == id) {
+      return 'assets/img/king_white.png'
+    }
+    else {
+      return '';
+    }
+
+  }
 }
