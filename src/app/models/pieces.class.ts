@@ -4,6 +4,7 @@ export class Pieces {
     img: string = '';
     fieldNow: string | number = '';
     fieldThen: string | number = '';
+    color: string = '';
     constructor() {
 
 
