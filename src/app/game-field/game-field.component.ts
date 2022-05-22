@@ -32,8 +32,9 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
     this.service.allFields = this.id['_results'];
     console.log(this.service.allFields)
     this.service.filterElement()
+
   }
-  
+
   // set the correct field color
   getStyling(row: number, col: number) {
     if ((row + col) % 2) {
@@ -51,7 +52,15 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
 
   checkSource(column: string, row: number) {
     let id: string | number = column + row;
-    if (this.service.king_white.fieldNow == id) {
+    console.log(id)
+    this.service.allCreatedPieces.forEach((arr: []) => {
+      arr.forEach((piece: any) => {
+        console.log(piece)
+
+
+      })
+    })
+    if (this.service.king_white[0].fieldNow == id) {
       return 'assets/img/king_white.png'
     }
     else {
