@@ -47,9 +47,9 @@ export class ServiceService {
     new Horse('assets/img/horse_white.png', 'G1', 'white')];
     this.horses_black = [new Horse('assets/img/horse_black.png', 'B8', 'black'),
     new Horse('assets/img/horse_black.png', 'G8', 'black')]
-    for (let i = 0; i <= this.columns.length; i++) {
-      this.pawns_white[i] = new Pawn('assets/img/horse_white.png', this.columns[i] + '2', 'white');
-      this.pawns_black[i] = new Pawn('assets/img/horse_black.png', this.columns[i] + '7', 'black');
+    for (let i = 0; i < this.columns.length; i++) {
+      this.pawns_white[i] = new Pawn('assets/img/pawn_white.png', this.columns[i] + '2', 'white');
+      this.pawns_black[i] = new Pawn('assets/img/pawn_black.png', this.columns[i] + '7', 'black');
     }
     this.allCreatedPieces = [this.king_black, this.king_white, this.queen_black, this.queen_white, this.bishops_black, this.bishops_white,
     this.horses_black, this.horses_white, this.rooks_black, this.rooks_white, this.pawns_black, this.pawns_white]

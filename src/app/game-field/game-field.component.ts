@@ -19,7 +19,7 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
 
     this.service.createPieces();
   }
-
+  currentPiece: any;
   ngAfterViewInit() {
     this.pushAllFields();
   }
@@ -43,29 +43,38 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
       return 'lightgrey';
     }
   }
-
   // if tile gets clicked, get the current piece and math the possible movement
   onTileClick(column: string, row: number) {
-    console.log(column, row)
+    let id = column + row;
     console.log(this.id['_results'])
+    console.log(this.service.allCreatedPieces)
+    if (!this.currentPiece) {
+      this.service.allCreatedPieces.forEach((arr: []) => {
+        arr.forEach((piece: any) => {
+          if (piece.fieldNow == id) {
+            this.currentPiece = piece;
+            console.log('currentPiece is', this.currentPiece)
+          }
+        })
+      })
+    }
+
+    if (this.currentPiece && (this.currentPiece.fieldNow !== id)) {
+      this.currentPiece.fieldNow = id;
+    } else if (this.currentPiece) { console.log('fail') }
   }
 
+  img: string = '';
   checkSource(column: string, row: number) {
+    this.img = '';
     let id: string | number = column + row;
-    console.log(id)
     this.service.allCreatedPieces.forEach((arr: []) => {
       arr.forEach((piece: any) => {
-        console.log(piece)
-
-
+        if (piece.fieldNow === id) {
+          this.img = piece.img
+        }
       })
     })
-    if (this.service.king_white[0].fieldNow == id) {
-      return 'assets/img/king_white.png'
-    }
-    else {
-      return '';
-    }
-
+    return this.img
   }
 }
