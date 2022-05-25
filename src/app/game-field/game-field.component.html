@@ -2,7 +2,7 @@
     <div flex class="row" *ngFor="let row of service.rows; let y=index">
         <div class="column" *ngFor="let column of service.columns; let x=index" [style.background-color]="getStyling(y, x)">
             <!--Chess Piece here-->
-            <div #id id="{{column+row}}" class="tile" (click)="onTileClick(column, row)">
+            <div #id id="{{column+row}}" class="tile" (click)="whichClick(column, row)">
                 <img [style.background-color]="getStyling(y, x)" class=" images " [src]="checkSource(column, row)">
             </div>
 

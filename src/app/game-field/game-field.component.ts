@@ -19,7 +19,9 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
 
     this.service.createPieces();
   }
+  moveThere:any = '';
   currentPiece: any;
+  firstClick = true;
   ngAfterViewInit() {
     this.pushAllFields();
   }
@@ -43,26 +45,60 @@ export class GameFieldComponent implements OnInit, AfterViewInit {
       return 'lightgrey';
     }
   }
+  whichClick(column: string, row: number) {
+    if (this.firstClick) {
+      this.onTileClick(column, row)
+    }
+    else {
+      this.onTileSecondClick(column, row)
+    }
+  }
   // if tile gets clicked, get the current piece and math the possible movement
   onTileClick(column: string, row: number) {
     let id = column + row;
     console.log(this.id['_results'])
     console.log(this.service.allCreatedPieces)
-    if (!this.currentPiece) {
-      this.service.allCreatedPieces.forEach((arr: []) => {
-        arr.forEach((piece: any) => {
-          if (piece.fieldNow == id) {
-            this.currentPiece = piece;
-            console.log('currentPiece is', this.currentPiece)
-          }
-        })
+    console.log(id)
+    // select current piece
+    this.service.allCreatedPieces.forEach((arr: []) => {
+      arr.forEach((piece: any) => {
+        if (piece.fieldNow === id) {
+          this.currentPiece = piece;
+        }
       })
-    }
+    })
 
-    if (this.currentPiece && (this.currentPiece.fieldNow !== id)) {
-      this.currentPiece.fieldNow = id;
-    } else if (this.currentPiece) { console.log('fail') }
+    // if current piece selected, do smth.
+    console.log(this.currentPiece)
+    this.firstClick = false;
   }
+
+  onTileSecondClick(column: string, row: number) {
+    let id = column + row;
+    // select current piece
+    console.log(id)
+    this.service.allCreatedPieces.forEach((arr: []) => {
+      arr.forEach((piece: any) => {
+        console.log(piece.fieldNow, id)
+        if (piece.fieldNow === id) {
+          this.moveThere = piece;
+          console.log(this.moveThere)
+        }
+      })
+    })
+    console.log(this.moveThere)
+    if (this.moveThere == '') {
+      console.log('empty')
+      this.currentPiece.fieldNow = id;
+      this.currentPiece = '';
+      this.moveThere = '';
+      this.firstClick = true;
+    }
+    else if (this.moveThere) {
+      //check if move possible
+    }
+  }
+
 
   img: string = '';
   checkSource(column: string, row: number) {
